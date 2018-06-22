@@ -1,0 +1,111 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (ENTRADA ANALÓGICA) <=======]==}
+           ________________________________________________________
+*/
+
+ int trigger = 10;           // declaramos la palabra trigger como un tipo entero y al mismo tiempo reemplaza al pin 9
+ int echo = 9;           // declaramos la palabra echo como un tipo entero y al mismo tiempo reemplaza al pin 8
+ float tiempo_de_espera,distancia; // creamos una variable de fotante; es decir, nos puede dar resultados en decimales.
+
+void setup() {
+  Serial.begin (9600);   // establemos la comucicacion serial
+  pinMode (trigger, OUTPUT); // declarmos el pin 9 como salida
+  pinMode (echo, INPUT);   // declaramos el 8 como entrada
+}
+
+void loop() {
+digitalWrite (trigger,LOW); // ponemos en bajo el pin 8 durante 2 microsegundos
+delayMicroseconds(2);
+digitalWrite (trigger, HIGH);// ahora ponemos en alto pin 8 durante 10 microsegundos;
+delayMicroseconds (10);     // pues este el momento en que emite el sonido durante 10 segungos
+digitalWrite (trigger, LOW); // ahora ponemos en bajo pin 8 
+
+tiempo_de_espera = pulseIn (echo,HIGH); // pulseIn, recoge la señal del sonido que emite el trigger
+/*La función pulseIn espera la aparición de un pulso en una entrada y mide su duración, dando como resultado la duración medida                   
+ El primer parámetro (ECHO) es el pin sobre el que se realizará la medición.
+Y el segundo parámetro (HIGH) indica si el pulso a esperar será un 1 (HIGH) o un 0 (LOW).
+ */
+distancia =(tiempo_de_espera/2)/29.15; // formula para hallar la distancia
+
+Serial.print (distancia);    // imprimimos la distancia en cm
+Serial.println ("cm");
+delay (1000);
+if (distancia>=30 && distancia <=400){  //
+  analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,0);
+}
+if (distancia>=26 && distancia <=30){
+  analogWrite (2,255);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,0);
+}
+if (distancia>=23 && distancia <=26){
+  analogWrite (2,0);
+  analogWrite (3,255);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,0);
+  
+}if (distancia>=20 && distancia <=23){
+ analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,255);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,0);
+}
+if (distancia>=17 && distancia <=20){
+ analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,255);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,0);
+}
+if (distancia>=14 && distancia <=17){
+  analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,255);
+  analogWrite (7,0);
+  analogWrite (8,0);
+}
+if (distancia>=11 && distancia <=14){
+ analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,255);
+  analogWrite (8,0);
+}
+if (distancia>=8 && distancia <=11){
+ analogWrite (2,0);
+  analogWrite (3,0);
+  analogWrite (4,0);
+  analogWrite (5,0);
+  analogWrite (6,0);
+  analogWrite (7,0);
+  analogWrite (8,255);
+}
+
+}
