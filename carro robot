@@ -1,0 +1,148 @@
+ /*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (CARRO ROBOT) <=======]==}
+           ________________________________________________________
+
+           CONEXIONES:
+  ARDUINO PIN   PUENTE (H)         
+       9      =  PWM_MI
+       10     =  PWM_MD
+       11     =  INT_MI_A
+       12     =  INT_MI_B
+       13     =  INT_MD_A
+       14     =  INT_MD_B
+
+ ARDUINO PIN    LED RGB
+       14     =  PIN_RED
+       15     =  PIN_GREEN
+       16     =  PIN_BLUE
+*/
+
+
+//=== MOTORES===>>
+# define MI_A   11
+# define MI_B   12
+# define MD_A   13
+# define MD_B   14
+int VEL_MI =    9;
+int VEL_MD =   10;
+
+//=== LEDS===>>
+# define red    15
+# define green  16
+# define blue   17
+
+String readString ;
+void setup(){
+  Serial.begin (9600);
+ //=== MOTORES===>>
+ pinMode (MI_A,   OUTPUT);
+ pinMode (MI_B,   OUTPUT);
+ pinMode (MD_A,   OUTPUT);
+ pinMode (MD_B,   OUTPUT);
+ pinMode (VEL_MI, OUTPUT);
+ pinMode (VEL_MD, OUTPUT);
+ 
+        //=== LEDS===>>
+ pinMode (red ,   OUTPUT);
+ pinMode (green,  OUTPUT);
+ pinMode (blue,   OUTPUT);
+ 
+}
+void loop(){
+
+  char dato = Serial.read();
+switch (dato){
+  case  'A' :adelante();
+  break;
+   case 'D' : derecha();
+  break;
+   case 'I' :izquierda();
+  break;
+   case 'a' :    atras();
+  break;
+   case 'X' :   neutro();
+  break;
+ case 'V': vel_motorI();
+ break;
+  case 'v': vel_motorD();
+break;
+}
+}
+
+//====FUNCIONES PARA MOTORES=====>>
+void adelante(){
+digitalWrite(MI_A,1);
+digitalWrite(MI_B,0);
+digitalWrite(MD_A,1);
+digitalWrite(MD_B,0);
+digitalWrite(green,0);
+digitalWrite(red,  1);
+digitalWrite(blue, 1);
+
+}
+void derecha(){
+digitalWrite(MI_A,0);
+digitalWrite(MI_B,0);
+digitalWrite(MD_A,1);
+digitalWrite(MD_B,0);
+digitalWrite(green,1);
+digitalWrite(red,  1);
+digitalWrite(blue, 0);
+}
+void izquierda(){
+digitalWrite(MI_A,1);
+digitalWrite(MI_B,0);
+digitalWrite(MD_A,0);
+digitalWrite(MD_B,0);
+digitalWrite(green,1);
+digitalWrite(red,  1);
+digitalWrite(blue, 0);
+}
+void atras(){
+digitalWrite(MI_A,0);
+digitalWrite(MI_B,1);
+digitalWrite(MD_A,0);
+digitalWrite(MD_B,1);
+digitalWrite(green,1);
+digitalWrite(red,  0);
+digitalWrite(blue, 1);
+}
+void neutro(){
+digitalWrite(MI_A,0);
+digitalWrite(MI_B,0);
+digitalWrite(MD_A,0);
+digitalWrite(MD_B,0);
+digitalWrite(green,1);
+digitalWrite(red,  1);
+digitalWrite(blue, 1);
+}
+//-----------velocidad----------
+void vel_motorI(){
+  delay(15);
+  while (Serial.available()){
+ char C   = Serial.read();
+  readString += C;
+  }
+if (readString.length()>0){
+  Serial.println(readString.toInt());
+  analogWrite (VEL_MI,(readString.toInt()));
+  readString = "";
+}
+ }
+  void vel_motorD(){
+  delay(15);
+  while (Serial.available()){
+ char c    = Serial.read();
+  readString += c;
+  }
+if (readString.length()>0){
+  Serial.println(readString.toInt());
+  analogWrite (VEL_MD,(readString.toInt()));
+  readString = "";
+}
+ }
