@@ -1,0 +1,35 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (ENTRADA DIGITAL) <=======]==}
+           ________________________________________________________
+*/
+const int led = 2;                
+const int entrada1 = 6;
+const int entrada2 = 7;   
+int valor_entrada1;           //creamos una variable de tipo entero para que el arduino reconozca
+int valor_entrada2;
+
+void setup() {
+ pinMode(led ,OUTPUT);       // declaramos el pin como salida      
+ 
+ pinMode (entrada1, INPUT);  // declaramos el pin como entrada       
+ pinMode (entrada2, INPUT);  
+
+}
+
+void loop() {
+valor_entrada1 = digitalRead (entrada1); // guardamos la lectura digital en la variable(valor_entrada1) 
+valor_entrada2 = digitalRead (entrada2);
+
+if (valor_entrada1 == 1){  // si valor de la entrada es 1 lógico o 5 voltios 
+  digitalWrite (led, true); // entonces que el led se encienda
+}
+
+if (valor_entrada2 == 1){ // si valor de la entrada es 1 lógico o 5 voltios
+  digitalWrite (led, false); // entonces que el led se apague
+}
+}
