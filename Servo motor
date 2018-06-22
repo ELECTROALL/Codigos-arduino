@@ -1,0 +1,49 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (SERVOMOTOR) <=======]==}
+           ________________________________________________________
+*/
+
+
+int servo =7;
+void setup() {
+ pinMode (servo, OUTPUT);
+ Serial.begin(9600);
+}
+
+void loop() {
+  
+ //  {==[=======> (180°) <=======]==}
+ for (int Hz =0; Hz < 50 ;Hz++){      // repetimos la instruccion 50 veces
+digitalWrite (servo,HIGH); 
+delayMicroseconds(2300);               // llevamos a 180°
+digitalWrite (servo,LOW);
+delay(18);
+Serial.println(Hz);
+ }
+delay(2000);                          // retardo
+
+// {==[=======> (90°) <=======]==}
+ for (int Hz =0; Hz < 50 ;Hz++){     // repetimos la instruccion 50 veces
+digitalWrite (servo,HIGH);
+delayMicroseconds(1500);                // llevamos a 90°
+digitalWrite (servo,LOW);
+delay(19);
+Serial.println(Hz);
+ }
+delay(2000);
+
+// {==[=======> (0°) <=======]==}
+ for (int Hz =0; Hz < 50 ;Hz++){      // repetimos la instruccion 50 veces
+digitalWrite (servo,HIGH);
+delayMicroseconds(700);                // llevamos a 0°
+digitalWrite (servo,LOW);
+delay(20);
+Serial.println(Hz);  
+ }
+ delay(2000);
+}
