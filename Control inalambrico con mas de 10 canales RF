@@ -1,0 +1,163 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+     {==[=======> (CONTROL INALAMBRICO MAS DE 10 SALIDIAS (CANALES)) <=======]==}
+           ________________________________________________________
+*/
+#include <LiquidCrystal.h>
+LiquidCrystal lcd(10, 9, 5, 6, 7, 8);
+// {==[=======> (DEFINIMOS VARIABLES PARA LAS ENTRADAS) <=======]==}
+# define prender   2
+# define apagar    3
+# define activador 4
+// {==[=======> (DEFINIMOS VARIABLES PARA LAS SALIDAS) <=======]==}
+# define led1  11
+# define led2  12
+# define led3  13
+# define led4  14
+# define led5  15
+# define led6  16
+# define led7  17
+# define led8  18
+# define led9  19
+# define led10 1
+int estado_anterior  = 0;
+int estado_anterior1 = 0;
+byte counter = 0;
+byte counter1 = 0;
+void setup() {
+  lcd.begin(16, 2);
+  // {==[=======> (DEFINIMOS VARIABLES COMO ENTRADAS) <=======]==}
+   pinMode (prender,   INPUT);
+   pinMode (apagar,    INPUT);
+   pinMode (activador, INPUT);
+   
+  // {==[=======> (DEFINIMOS VARIABLES COMO SALIDAS) <=======]==}
+  pinMode (led1 , OUTPUT);
+  pinMode (led2 , OUTPUT);
+  pinMode (led3 , OUTPUT);
+  pinMode (led4 , OUTPUT);
+  pinMode (led5 , OUTPUT);
+  pinMode (led6 , OUTPUT);
+  pinMode (led7 , OUTPUT);
+  pinMode (led8 , OUTPUT);
+  pinMode (led9 , OUTPUT);
+  pinMode (led10 , OUTPUT);
+  
+  lcd.setCursor(0, 0);
+  lcd.print(" WELCOME...");
+   lcd.setCursor(0, 1);
+  lcd.print("TO ELECTROALL..");
+  delay(1000);
+  lcd.clear();
+
+}
+
+void loop() {
+
+int valor_prender  = digitalRead (prender);
+int valor_apagar   = digitalRead (apagar);
+int valor_activador= digitalRead (activador);
+
+  // {==[=======> (FUNCION PARA EL CONTADOR ASCENDENTE (PRENDER)) <=======]==}
+  if (valor_prender != estado_anterior) { //si valor es diferente a estado anterior
+    if (valor_prender == HIGH) {
+      counter++;
+      lcd.setCursor(0, 0);
+      lcd.print("PRENDER LED");
+      lcd.print(counter);
+      
+    }
+  }
+  delay (50);
+  estado_anterior = valor_prender;
+  if(counter ==11){
+    delay(1000);
+   counter=0;
+   lcd.clear();
+  }
+ 
+  // {==[=======> (FUNCION PARA EL CONTADOR ASCENDENTE (APAGAR)) <=======]==}
+  if(valor_apagar != estado_anterior1){
+    if(valor_apagar ==HIGH){
+      counter1++;
+      lcd.setCursor(0,1);
+      lcd.print("APAGAR LED");
+      lcd.print(counter1);
+      
+    }
+  }
+  delay(50);
+  estado_anterior1 = valor_apagar;
+  if (counter1 == 11) {
+    delay(1000);
+    counter1 = 0;
+    lcd.clear();
+  }
+  // {==[=======> (FUNCION PARA ENCENDER LOS LEDS (SALIDAS)) <=======]==}
+  if(counter==1&&valor_activador == HIGH){
+ digitalWrite(led1,true);
+  }
+  if(counter==2&&valor_activador==HIGH){
+   digitalWrite(led2,true); 
+  }
+  if(counter==3&&valor_activador==HIGH){
+   digitalWrite(led3,true); 
+  }
+  if(counter==4&&valor_activador==HIGH){
+   digitalWrite(led4,true); 
+  }
+  if(counter==5&&valor_activador==HIGH){
+   digitalWrite(led5,true); 
+  }
+  if(counter==6&&valor_activador==HIGH){
+   digitalWrite(led6,true); 
+  }
+  if(counter==7&&valor_activador==HIGH){
+   digitalWrite(led7,true); 
+  }
+   if(counter==8&&valor_activador==HIGH){
+   digitalWrite(led8,true); 
+  }
+   if(counter==9&&valor_activador==HIGH){
+   digitalWrite(led9,true); 
+  }
+   if(counter==10&&valor_activador==HIGH){
+   digitalWrite(led10,true); 
+  }
+ // {==[=======> (FUNCION PARA APAGAR LOS LEDS (SALIDAS)) <=======]==}
+  if(counter1==1&&valor_activador==HIGH){
+   digitalWrite(led1,false); 
+  }
+  if(counter1==2&&valor_activador==HIGH){
+   digitalWrite(led2,false); 
+  }
+  if(counter1==3&&valor_activador==HIGH){
+   digitalWrite(led3,false); 
+  }
+  if(counter1==4&&valor_activador==HIGH){
+   digitalWrite(led4,false); 
+  }
+  if(counter1==5&&valor_activador==HIGH){
+   digitalWrite(led5,false); 
+  }
+  if(counter1==6&&valor_activador==HIGH){
+   digitalWrite(led6,false); 
+  }
+  if(counter1==7&&valor_activador==HIGH){
+   digitalWrite(led7,false); 
+  }
+   if(counter1==8&&valor_activador==HIGH){
+   digitalWrite(led8,false); 
+  }
+   if(counter1==9&&valor_activador==HIGH){
+   digitalWrite(led9,false); 
+  }
+   if(counter1==10&&valor_activador==HIGH){
+   digitalWrite(led10,false); 
+  }
+
+}
