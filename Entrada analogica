@@ -1,0 +1,31 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (ENTRADA ANALÓGICA) <=======]==}
+           ________________________________________________________
+*/
+int led = 6;                 //  declaramos  las variables de tipo entero
+int entrada_analogica= A0;
+
+
+void setup() {
+  pinMode (led, OUTPUT);               // designamos los pines como pines de salida y entrada
+  pinMode (entrada_analogica, INPUT);    // entrada
+}
+
+void loop() {                          //entramos a un siclo repetitivo
+  
+int valor_entrada_analogica =0;       //  declaramos  las variables de tipo entero
+int valor_salida_pwm=0;                   //  declaramos  la variable de tipo entero para la ulizacion de la modulacion por ancho de pulso
+                                      //  ojo ( estos pines tienes que ser pines de (PWM)
+
+ valor_entrada_analogica = analogRead(entrada_analogica);  // Guardamos la lectura analogica en la variable (valor_entrada_analógica)
+ valor_salida_pwm =map(valor_entrada_analogica,0, 1023,0,255); // guardamos el mapeo en la variable (valor salida)
+ analogWrite(led, valor_salida_pwm);                           // manifestamos en el led la lectura analogica que hemos reducido de( 0 - 255)
+                                                           // donde 0 es 0 voltios y 255 viene ser 5 voltios
+ 
+
+}
