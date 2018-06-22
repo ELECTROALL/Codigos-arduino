@@ -1,0 +1,35 @@
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (SEMAFORO) <=======]==}
+           ________________________________________________________
+*/
+
+# define verde    2   //DESIGNAMOS UNA VARIABLE A LOS PINES RESPECTIVOS
+# define amarillo 3
+# define rojo     4
+void setup() {
+  pinMode (verde,   OUTPUT); // ASIGNAMOS LOS PINES COMO SALIDA
+  pinMode (amarillo,OUTPUT);
+  pinMode (rojo,    OUTPUT);
+}
+
+void loop() {
+     //::::::::::: ROJO::::::::::
+  digitalWrite(rojo,    true);
+  delay       (5000);
+     digitalWrite(rojo,    false);
+   
+     //::::::::::: AMARILLO::::::::::
+  digitalWrite(amarillo,true);
+  delay       (5000);
+      digitalWrite(amarillo,false);
+      
+    //::::::::::: VERDE::::::::::      
+    digitalWrite(verde,   true);
+  delay       (5000);
+    digitalWrite(verde,   false);   
+}
