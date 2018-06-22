@@ -1,0 +1,33 @@
+
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                 {==[=======> (CONTROL APP) <=======]==}
+           ________________________________________________________
+*/
+
+char c;
+void setup() {
+ Serial.begin (9600);                             // establecemos la comunicacion a 9600 baudios
+pinMode (13, OUTPUT);
+
+}
+
+void loop() {
+
+
+if (Serial.available()) { 
+  c = Serial.read ();                        // almacenamos la lectura del serial en la bariable "c"
+  switch (c) {
+    case 'a' : digitalWrite (13,HIGH);       //Cuando llega a se p´rende el led
+         break ;                             // PARA SALIR DE CADA CASO
+    case 'b' : digitalWrite (13, LOW);
+         break ;
+  }
+  
+}
+
+}
