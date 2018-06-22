@@ -1,0 +1,45 @@
+// CREADO POR  : ELECTROAL
+// FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+// PÁGINA      : http://che-charls-electroall.webnode.es/
+// TWITTER     : https://twitter.com/ChCharlsELECTRO
+// ________________________________________________________
+// SECUENCIA DE LEDS ( FOR)
+// ________________________________________________________
+int leds;
+void setup() {
+  Serial.begin (9600); // Establecemos la comunicacion serial entre la tarjeta y nuesta computadora
+  for ( leds =2; leds <19;leds++){ // reconocemos los  pines; desde el pin 2 hasta el pin 19
+  pinMode (leds, OUTPUT); // declaramos como pines de salida.
+  }
+
+}
+
+void loop() {
+for ( leds =2; leds <19; leds = leds +1){ // empezamos encendiendo y apagando ascendientemente, desde el pin 2 hasta el pin 19
+  Serial.println(leds); // imprimimos el numero de pin correspondiente 
+digitalWrite (leds, 1);
+delay (100);
+Serial. print("    PIN = "); // creamos una letra dentro de monitor serial (PIN)
+digitalWrite (leds, 0); 
+delay (100);
+Serial. print(" + "); // creamos un signo dentro del monitor serial (+)
+  }
+  for ( leds =19; leds >2; leds = leds -1){ // empezamos encendiendo y apagando descendientemente, desde el pin 18 hasta el pin 2
+    Serial.println(leds); // imprimimos el numero de pin correspondiente 
+digitalWrite (leds, 1); 
+delay (100);
+Serial. print("      PIN = "); // creamos una letra dentro de monitor serial  (PIN)
+digitalWrite (leds, 0); 
+delay (100);
+Serial. print("   -"); // creamos un signo dentro de monitor serial 
+  }
+
+  for ( leds =19; leds >2; leds = leds -1){ //enciende desde el pin 19 hasta el pin 2
+    Serial.println(leds); // imprimimos el numero de pin correspondiente 
+digitalWrite (leds, 1);  
+delay (100);
+Serial. print("   PIN = ");  // creamos una letra dentro de monitor serial (PIN)
+   
+  }
+
+}
