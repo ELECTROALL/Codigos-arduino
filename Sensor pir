@@ -1,0 +1,40 @@
+
+/*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                    {==[=======> (SENSOR PIR) <=======]==}
+           ________________________________________________________
+*/
+int led = 13;           // declaramos las variables ciomo un tipo entero
+int lectura =7;
+int pir = 0;
+void setup() {
+  Serial.begin (9600);
+  Serial.println ("           ESTADO DE LA ENTRADA");
+  pinMode ( led,    OUTPUT); // designamos los pines, tanto como salidas y entradas
+  pinMode ( lectura, INPUT);
+ 
+
+}
+
+void loop() {
+ pir = digitalRead (lectura);   // almacenamos la lectura digital en la variable(pir)
+ if (pir == 1){                 // y decimos si la lectura es 1 lógico que se encienda el led 13
+  
+  digitalWrite (led, HIGH); 
+  Serial.print ("             estado = ");  //mostramos en nuestro monitor serial el estado de la entrada
+  Serial.print (pir);
+  Serial.println ("Logico"); 
+  delay (1000);     
+ }
+else {                           // caso contrario que el led se mantenga apagado
+  digitalWrite (led, LOW);
+  Serial.print ("          estado = ");  //mostramos en nuestro monitor serial el estado de la entrada
+  Serial.print (pir);
+  Serial.println ("Logico");
+  delay (1000);
+}
+}
