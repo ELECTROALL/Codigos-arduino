@@ -1,0 +1,72 @@
+ /*
+                CREADO POR  : ELECTROALL
+                FACEBOOK    : https://www.facebook.com/ChecharlsElEctroall/
+                PÁGINA      : http://che-charls-electroall.webnode.es/
+                TWITTER     : https://twitter.com/ChCharlsELECTRO
+           ________________________________________________________
+                   {==[=======> (TERMISTOR NTC) <=======]==}
+           ________________________________________________________
+*/
+# include <LiquidCrystal.h>
+LiquidCrystal lcd (2,3,4,5,6,7);
+# define led_rojo  13
+# define led_ambar 12
+# define led_azul  11
+
+float temperatura;
+byte valor;
+
+void setup() {
+ lcd.begin   (16,2);
+ Serial.begin(9600);
+ pinMode (led_rojo , OUTPUT);
+ pinMode (led_ambar, OUTPUT);
+ pinMode (led_azul , OUTPUT);
+}
+void loop() {
+temperatura = analogRead(A0);
+Serial.println (temperatura);
+temperatura = temperatura*0.2;
+Serial.print(temperatura);
+Serial.println("*C");
+lcd.setCursor(0,0);
+lcd.print( "temperatura=");
+lcd.print(temperatura);
+delay(500);
+lcd.clear();
+if(temperatura >=0 &&temperatura <=30){
+  digitalWrite (led_rojo, 1); 
+  digitalWrite (led_ambar,0);
+  digitalWrite (led_azul, 0);
+  lcd.setCursor(4,1);
+  lcd.print    ("REGULAR");
+  
+}
+if(temperatura >=50 &&temperatura <=100){
+  digitalWrite (led_ambar,1); 
+  digitalWrite (led_rojo, 0);
+  digitalWrite (led_azul, 0); 
+    lcd.setCursor(4,1);
+  lcd.print    ("ALTO");
+}
+
+if(temperatura >=100 &&temperatura <=180){
+  digitalWrite (led_azul, 1); 
+  digitalWrite (led_rojo, 0);
+  digitalWrite (led_ambar,0);
+   lcd.setCursor(2,1);
+  lcd.print    ("MUY ALTO");
+}
+if(temperatura >=30 &&temperatura <=50){
+  digitalWrite (led_azul, 0); 
+  digitalWrite (led_rojo, 0);
+  digitalWrite (led_ambar,0);
+}
+if(temperatura >=180 &&temperatura <=300){
+  digitalWrite (led_azul, 0); 
+  digitalWrite (led_rojo, 0);
+  digitalWrite (led_ambar,0);
+}
+
+
+}
