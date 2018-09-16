@@ -1,0 +1,18 @@
+# define entrada 2
+# define audio 8
+
+void setup() {
+pinMode (entrada, INPUT);
+pinMode (audio, OUTPUT);
+
+
+}
+
+void loop() {
+int v_entrada = digitalRead(entrada);
+if(v_entrada==1){
+  tone(audio, 150,1000 ); // (PIN, FRECUENCIA, DURACIÓN). 
+}
+}
+
+// las voces masulinas oscilan entre 80 - 200hz, mientras que las femeninas 150 - 300hz
